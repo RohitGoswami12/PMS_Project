@@ -17,13 +17,22 @@ namespace PMS_Project.Controllers
         IUserRepository obj = new UserRepository();
         IRoleRepository _obj = new RoleRepository();
         PMS_Context _context = new PMS_Context();
+
+        public IActionResult HomePage()
+        {
+            return View();
+        }
+
+        [Authorize]
         public IActionResult Userlist()
         {
             List<UserDetails> users = obj.AllUsers();
             return View(users);
         }
 
+        
         [HttpGet]
+        [Authorize]
         public IActionResult NewRegistration()
         {
             var roles = _obj.AllRoles();
@@ -37,6 +46,7 @@ namespace PMS_Project.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public IActionResult NewRegistration(RegistrationVM registration)
         {
             string msg = obj.AddUsers(registration);
@@ -94,10 +104,10 @@ namespace PMS_Project.Controllers
                             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
 
                             // Store the current user's role in session
-                            //HttpContext.Session.SetString("CurrRole", userRole);
+                            HttpContext.Session.SetString("CurrRole", userRole);
 
                             // Redirect to homepage or another role-specific page
-                            return RedirectToAction("Userlist");
+                            return RedirectToAction("HomePage");
                         }
                         else
                         {

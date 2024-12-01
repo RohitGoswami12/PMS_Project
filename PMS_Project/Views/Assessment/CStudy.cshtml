@@ -4,12 +4,10 @@
     ViewData["Title"] = "CStudy";
 }
 
-<h1>CStudy</h1>
-
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table">
+<table class="table table-bordered border-secondary text-center">
     <thead>
         <tr>
             <th>
@@ -27,7 +25,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.CreatedBy)
             </th>
-            <th></th>
+            @* <th></th> *@
         </tr>
     </thead>
     <tbody>
@@ -48,11 +46,11 @@
             <td>
                 @Html.DisplayFor(modelItem => item.CreatedBy)
             </td>
-            <td>
+            @* <td>
                 @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
                 @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
                 @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
+            </td> *@
         </tr>
 }
     </tbody>

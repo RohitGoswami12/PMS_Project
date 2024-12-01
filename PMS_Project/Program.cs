@@ -41,11 +41,16 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+// Enable authentication and authorization
+app.UseAuthentication();
 app.UseAuthorization();
+
+// Enable session
+app.UseSession();
 
 app.MapControllerRoute(
     name: "default",
-    //pattern: "{controller=User}/{action=Login}/{id?}");
-    pattern: "{controller=Assessment}/{action=AllAssess}/{id?}");
+    pattern: "{controller=Home}/{action=Index}/{id?}");
+//pattern: "{controller=Assessment}/{action=AllAssess}/{id?}");
 
 app.Run();

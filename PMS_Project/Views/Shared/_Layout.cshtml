@@ -1,4 +1,10 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Http
+@{
+    var curRole = Context.Session.GetString("CurrRole"); // Fetch the current role from the session
+    var isAuthenticated = User.Identity.IsAuthenticated; // Check if the user is authenticated
+}
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -13,34 +19,56 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-primary border-bottom box-shadow mb-3" data-bs-theme="dark">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">PMS</a>
+                <a class="navbar-brand" asp-area="" asp-controller="User" asp-action="HomePage">PMS</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
+                aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link " asp-area="" asp-controller="User" asp-action="Userlist">Registration List</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link " asp-area="" asp-controller="User" asp-action="NewRegistration">New Registration</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link " asp-area="" asp-controller="User" asp-action="ChangePassword">Change Password</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link " asp-area="" asp-controller="Assessment" asp-action="AllAssess">Assessment List</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link " asp-area="" asp-controller="Assessment" asp-action="NewAssess">Create Assessment</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link " asp-area="" asp-controller="Assessment" asp-action="CStudy">Case Study</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link " asp-area="" asp-controller="Review" asp-action="Review">Review Content</a>
-                        </li>
+
+                        @* @{
+                        // Fetch the current role from the session
+                        var curRole = Context.Session.GetString("CurrRole");
+                        } *@
+                        @if (isAuthenticated && !string.IsNullOrEmpty(curRole))
+                        {
+                            @* User Registration - Only for Admin and HR *@
+                            @if (curRole == "Admin" || curRole == "HR")
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link " asp-area="" asp-controller="User" asp-action="Userlist">Registration List</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link " asp-area="" asp-controller="User" asp-action="NewRegistration">New Registration</a>
+                                </li>
+                            }
+
+                            <li class="nav-item">
+                                <a class="nav-link " asp-area="" asp-controller="User" asp-action="ChangePassword">Change Password</a>
+                            </li>
+
+                            @if (curRole == "Admin" || curRole == "PM")
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link " asp-area="" asp-controller="Assessment" asp-action="AllAssess">Assessment List</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link " asp-area="" asp-controller="Assessment" asp-action="NewAssess">Create Assessment</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link " asp-area="" asp-controller="Assessment" asp-action="CStudy">Case Study</a>
+                                </li>
+                            }
+
+                            @if (curRole == "Admin" || curRole == "SME")
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link " asp-area="" asp-controller="Review" asp-action="Review">Review Content</a>
+                                </li>
+                            }
+                        }
+
                     </ul>
                 </div>
             </div>
