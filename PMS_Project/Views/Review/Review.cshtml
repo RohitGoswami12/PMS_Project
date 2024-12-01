@@ -1,0 +1,100 @@
+﻿@model DL_PMS.Model.ContentReviewVM
+
+@{
+    ViewData["Title"] = "Review";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Review</title>
+</head>
+<body>
+
+    <h4>Content Review Page</h4>
+    <hr />
+    <div class="row border-1">
+        <div class="col-md-4">
+            <form asp-action="Review" class="border border-secondary ms-3">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <br />
+                <div>
+                    <label> &nbsp; Assessment</label>
+                    <select id="assessmentDropdown" asp-for="AssId">
+                        <option value="">Select an assessment</option>
+                        @foreach (var assessment in Model.Assessments)
+                        {
+                            <option value="@assessment.AssId">@assessment.AssessmentName</option>
+                        }
+                    </select>
+                </div>
+                <br />
+                <table id="caseStudyTable" class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Case Study ID</th>
+                            <th>Case Study Name</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="3">Please select an assessment.</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div id="caseStudyList">
+                    <!-- Case Studies will be dynamically populated here -->
+                </div>
+
+                <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                <script>
+                    $(document).ready(function () {
+                        $('#assessmentDropdown').change(function () {
+                            var assessmentId = $(this).val();
+
+                            if (assessmentId) {
+                                $.ajax({
+                                    url: '@Url.Action("GetCaseStudiesByAssessment")',
+                                    type: 'POST',
+                                    data: { assessmentId: assessmentId },
+                                    success: function (data) {
+                                        // Clear the case study table before adding new data
+                                        $('#caseStudyTable tbody').empty();
+
+                                        // Check if there are case studies
+                                        if (data.length > 0) {
+                                            $.each(data, function (index, caseStudy) {
+                                                // Append each case study as a new row in the table
+                                                $('#caseStudyTable tbody').append(
+                                                    '<tr>' +
+                                                    '<td>' + caseStudy.csId + '</td>' +
+                                                    '<td>' + caseStudy.csName + '</td>' +
+                                                    '<td><a href="/Review/Edit/' + encodeURIComponent(caseStudy.csId) + '">Edit</a></td>' +
+                                                    '</tr>'
+                                                );
+                                            });
+                                        } else {
+                                            $('#caseStudyTable tbody').append('<tr><td colspan="3">No case studies found.</td></tr>');
+                                        }
+                                    },
+                                    error: function (error) {
+                                        console.error("Error in AJAX call", error);
+                                    }
+                                });
+                            } else {
+                                $('#caseStudyTable tbody').empty();
+                                $('#caseStudyTable tbody').append('<tr><td colspan="3">Please select an assessment.</td></tr>');
+                            }
+                        });
+                    });
+                </script>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
+
+

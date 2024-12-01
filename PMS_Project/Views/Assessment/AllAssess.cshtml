@@ -1,0 +1,59 @@
+﻿@model IEnumerable<DL_PMS.Model.Assessment>
+
+@{
+    ViewData["Title"] = "AllAssess";
+}
+
+
+
+<p>
+    <a asp-controller="" asp-action="CreateContent">Create New</a>
+</p>
+<table class="table text-center table-bordered border-secondary">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.AssId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AssessmentName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Active)
+            </th>
+            @* <th></th> *@
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.AssId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AssessmentName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Active)
+            </td>
+            @* <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td> *@
+        </tr>
+}
+    </tbody>
+</table>

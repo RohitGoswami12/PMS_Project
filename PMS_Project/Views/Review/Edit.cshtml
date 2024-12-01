@@ -1,0 +1,110 @@
+﻿@model DL_PMS.Model.ContentEditVM
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Edit</title>
+
+</head>
+<body>
+
+    <h4>Content Edit Page</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Edit" class="ms-2">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                @* <div class="form-group">
+                <label asp-for="AssID" class="control-label"></label>
+                <input asp-for="AssID" class="form-control" />
+                <span asp-validation-for="AssID" class="text-danger"></span>
+                </div> *@
+
+                <!-- Hidden field for CaseStudyId -->
+                <input type="hidden" name="CaseStudyId" value="@Model.CaseStudyId" />
+                <!-- Hidden field for CaseStudyId -->
+                <input type="hidden" name="AssId" value="@Model.AssID" />
+                <div class="form-group">
+                    <label asp-for="CaseStudy" class="control-label"></label>
+                    <input asp-for="CaseStudy" class="form-control" />
+                    <span asp-validation-for="CaseStudy" class="text-danger"></span>
+                </div>
+                <br />
+                @* <div class="form-group">
+                <label asp-for="CaseStudyId" class="control-label"></label>
+                <input asp-for="CaseStudyId" class="form-control" />
+                <span asp-validation-for="CaseStudyId" class="text-danger"></span>
+                </div> *@
+                <div class="form-group">
+                    <label asp-for="Sol1" class="control-label"></label>
+                    <input asp-for="Sol1" class="form-control" />
+                    <select asp-for="CompId1" class="form-control" asp-items="ViewBag.Comp">
+                        <option value="">-- Select a Competency --</option>
+                    </select>
+                    @* <span asp-validation-for="Sol1" class="text-danger"></span> *@
+                </div>
+                <div class="form-group">
+                    <label asp-for="Sol2" class="control-label"></label>
+                    <input asp-for="Sol2" class="form-control" />
+                    <select asp-for="CompId2" class="form-control" asp-items="ViewBag.Comp">
+                        <option value="">-- Select a Competency --</option>
+                    </select>
+                    @* <span asp-validation-for="Sol2" class="text-danger"></span> *@
+                </div>
+                <div class="form-group">
+                    <label asp-for="Sol3" class="control-label"></label>
+                    <input asp-for="Sol3" class="form-control" />
+                    <select asp-for="CompId3" class="form-control" asp-items="ViewBag.Comp">
+                        <option value="">-- Select a Competency --</option>
+                    </select>
+                    @* <span asp-validation-for="Sol3" class="text-danger"></span> *@
+                </div>
+                <div class="form-group">
+                    <label asp-for="Sol4" class="control-label"></label>
+                    <input asp-for="Sol4" class="form-control" />
+                    <select asp-for="CompId4" class="form-control" asp-items="ViewBag.Comp">
+                        <option value="">-- Select a Competency --</option>
+                    </select>
+                    @* <span asp-validation-for="Sol4" class="text-danger"></span> *@
+                </div>
+                @* <div class="form-group">
+                <label asp-for="CompId1" class="control-label"></label>
+                <input asp-for="CompId1" class="form-control" />
+                <span asp-validation-for="CompId1" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                <label asp-for="CompId2" class="control-label"></label>
+                <input asp-for="CompId2" class="form-control" />
+                <span asp-validation-for="CompId2" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                <label asp-for="CompId3" class="control-label"></label>
+                <input asp-for="CompId3" class="form-control" />
+                <span asp-validation-for="CompId3" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                <label asp-for="CompId4" class="control-label"></label>
+                <input asp-for="CompId4" class="form-control" />
+                <span asp-validation-for="CompId4" class="text-danger"></span>
+                </div> *@
+                <br />
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    @* <div>
+    <a asp-action="Index">Back to List</a>
+    </div> *@
+
+</body>
+</html>
+

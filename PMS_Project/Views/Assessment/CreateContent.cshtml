@@ -1,0 +1,116 @@
+﻿@model DL_PMS.Model.CreateContentVM
+
+@{
+    ViewData["Title"] = "CreateContent";
+}
+
+<h1>CreateContent</h1>
+
+<h4>CreateContentVM</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CreateContent">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                @* <label asp-for="AssessmentId" class="control-label"></label> *@
+                @* <input asp-for="AssessmentId" class="form-control" /> *@
+                <select asp-for="AssessmentId" class="form-control" asp-items="ViewBag.Assment">
+                    <option value="">--Select Assessment--</option>
+                </select>
+                <span asp-validation-for="AssessmentId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                @* <label asp-for="Casestudy" class="control-label"></label> *@
+                <input asp-for="Casestudy" class="form-control" />
+                <span asp-validation-for="Casestudy" class="text-danger"></span>
+            </div>
+
+            <!-- Solution and Competency in the same row -->
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @* <label asp-for="Sol1" class="control-label"></label> *@
+                        <input asp-for="Sol1" class="form-control" placeholder="Solution 1" />
+                        <span asp-validation-for="Sol1" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @* <label asp-for="CompId1" class="control-label"></label> *@
+                        @* <input asp-for="CompId1" class="form-control" /> *@
+                        <select asp-for="CompId1" class="form-control" asp-items="ViewBag.Comp">
+                            <option value="">--Select Competency--</option>
+                        </select>
+                        <span asp-validation-for="CompId1" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <br />
+
+            <!-- Repeat for other Solution and Competency pairs -->
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <input asp-for="Sol2" class="form-control" placeholder="Solution 2" />
+                        <span asp-validation-for="Sol2" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <select asp-for="CompId2" class="form-control" asp-items="ViewBag.Comp">
+                            <option value="">--Select Competency--</option>
+                        </select>
+                        <span asp-validation-for="CompId2" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <br />
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <input asp-for="Sol3" class="form-control" placeholder="Solution 3" />
+                        <span asp-validation-for="Sol3" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <select asp-for="CompId3" class="form-control" asp-items="ViewBag.Comp">
+                            <option value="">--Select Competency--</option>
+                        </select>
+                        <span asp-validation-for="CompId3" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <br />
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <input asp-for="Sol4" class="form-control" placeholder="Solution 4" />
+                        <span asp-validation-for="Sol4" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <select asp-for="CompId4" class="form-control" asp-items="ViewBag.Comp">
+                            <option value="">--Select Competency--</option>
+                        </select>
+                        <span asp-validation-for="CompId4" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@* <div>
+    <a asp-action="Index">Back to List</a>
+</div> *@
+
