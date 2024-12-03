@@ -64,6 +64,9 @@
                             @if (curRole == "Admin" || curRole == "SME")
                             {
                                 <li class="nav-item">
+                                    <a class="nav-link " asp-area="" asp-controller="Assessment" asp-action="CreateContent">Create Content</a>
+                                </li>
+                                <li class="nav-item">
                                     <a class="nav-link " asp-area="" asp-controller="Review" asp-action="Review">Review Content</a>
                                 </li>
                             }
