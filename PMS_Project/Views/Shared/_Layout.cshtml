@@ -70,6 +70,14 @@
                                     <a class="nav-link " asp-area="" asp-controller="Review" asp-action="Review">Review Content</a>
                                 </li>
                             }
+                            <li class="nav-item ms-auto">
+                                <form class="form-inline" asp-controller="User" asp-action="Logout" method="post">
+                                    @Html.AntiForgeryToken()
+                                    <button type="submit" class="nav-link pt-2 btn btn-danger  border border-secondary">
+                                        Logout
+                                    </button>
+                                </form>
+                            </li>
                         }
 
                     </ul>
